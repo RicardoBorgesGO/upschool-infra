@@ -71,11 +71,7 @@ public class PersistenceJPAConfig {
 		final Properties hibernateProperties = new Properties();
 		//hibernateProperties.setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
 		hibernateProperties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
-		hibernateProperties.setProperty("hibernate.multiTenancy", env.getProperty("hibernate.multiTenancy"));
-		hibernateProperties.setProperty("hibernate.multi_tenant_connection_provider", env.getProperty("hibernate.multi_tenant_connection_provider"));
-		hibernateProperties.setProperty("hibernate.tenant_identifier_resolver", env.getProperty("hibernate.tenant_identifier_resolver"));
 		
-		// hibernateProperties.setProperty("hibernate.globally_quoted_identifiers", "true");
 		return hibernateProperties;
 	}
 

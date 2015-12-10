@@ -10,63 +10,15 @@
     
     <context:property-placeholder properties-ref="multitenancyConfiguration" location="classpath:demo.properties" />
 
-<!--     <bean id="myEmf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"> -->
-<!--         <property name="dataSource" ref="dataSource" /> -->
-<!--         <property name="packagesToScan" value="br.com.infra.commons.entity" /> -->
-<!--         <property name="jpaVendorAdapter"> -->
-<!--         <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" /> -->
-        
-            <!-- <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
-                <property name="generateDdl" value="${jpa.generateDdl}" />
-                <property name="databasePlatform" value="${persistence.dialect}" />
-            </bean> -->
-<!--         </property> -->
-<!--         <property name="jpaProperties"> -->
-<!--             <props> -->
-<!-- 				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop> -->
-<!--                 <prop key="hibernate.dialect">${hibernate.dialect}</prop> -->
-<!--             </props> -->
-<!--         </property> -->
-        
-        <!-- Configuracao multitenancy -->
-<!--         <property name="hibernate.multiTenancy" value="${hibernate.multiTenancy}" /> -->
-<!--         <property name="hibernate.multi_tenant_connection_provider" value="${hibernate.multi_tenant_connection_provider}" /> -->
-<!--         <property name="hibernate.tenant_identifier_resolver" value="${hibernate.tenant_identifier_resolver}" /> -->
-<!--     </bean> -->
-    
-<!--     <bean id="myEmf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"> -->
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSourceMap" ref="dataSource" />
         <property name="packagesToScan" value="br.com.infra.commons.entity" />
-<!--         <property name="jpaVendorAdapter"> -->
-<!--         <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" /> -->
-        
-            <!-- <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
-                <property name="generateDdl" value="${jpa.generateDdl}" />
-                <property name="databasePlatform" value="${persistence.dialect}" />
-            </bean> -->
-<!--         </property> -->
 		<property name="hibernateProperties">
             <map>
                 <entry key="hibernate.dialect" value="${hibernate.dialect}" />
                 <entry key="hibernate.show_sql" value="${hibernate.show_sql}" />
-                <entry key="hibernate.multiTenancy" value="${hibernate.multiTenancy}" />
-                <entry key="hibernate.tenant_identifier_resolver" value-ref="${hibernate.multi_tenant_connection_provider}" />
-                <entry key="hibernate.multi_tenant_connection_provider" value-ref="${hibernate.tenant_identifier_resolver}" />
             </map>
         </property>
-<!-- 		        <property name="hibernate.multiTenancy" value="${hibernate.multiTenancy}" /> -->
-<!-- 		        <property name="hibernate.multi_tenant_connection_provider" value="${hibernate.multi_tenant_connection_provider}" /> -->
-<!-- 		        <property name="hibernate.tenant_identifier_resolver" value="${hibernate.tenant_identifier_resolver}" /> -->
-
-<!--         <property name="jpaProperties"> -->
-<!--             <props> -->
-				<!-- <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop> -->
-<!--                 <prop key="hibernate.dialect">${hibernate.dialect}</prop> -->
-<!--             </props> -->
-<!--         </property> -->
-        
-        <!-- Configuracao multitenancy -->
     </bean>
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -77,10 +29,6 @@
         
     </bean>
 
-<!--     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"> -->
-<!--         <property name="entityManagerFactory" ref="myEmf" /> -->
-<!--     </bean> -->
-    
      <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>
         <property name="dataSource" ref="dataSource"/>

@@ -12,7 +12,6 @@ import br.com.infra.commons.constant.EnumAtivoInativo;
 import br.com.infra.commons.entity.Colaborador;
 import br.com.infra.dao.IColaboradorDAO;
 import br.com.infra.service.IColaboradorService;
-import br.com.infra.service.ITenantService;
 
 @Service
 @Transactional
@@ -21,9 +20,6 @@ public class ColaboradorServiceImpl implements IColaboradorService {
 	@Autowired
 	private IColaboradorDAO dao;
 	
-	@Autowired
-	private ITenantService tenantService;
-
 	@Override
 	public List<Colaborador> buscarTodosColaboradores() {
 		List<Colaborador> colaboradores = dao.buscaTodos();
